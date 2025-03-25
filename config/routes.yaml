@@ -1,0 +1,10 @@
+_pimcore:
+    resource: "@PimcoreCoreBundle/config/routing.yaml"
+
+app:
+    resource: "../src/Controller/"
+    type: annotation
+
+controllers:
+  resource: '../src/Controller/'
+  type: attribute
