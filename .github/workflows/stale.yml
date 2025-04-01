@@ -1,10 +1,16 @@
 name: Handle stale issues
 
 on:
-  workflow_dispatch:
   schedule:
-      - cron: '37 7 * * *'
+    - cron: '37 7 * * *' # Every day at 07:37
+  workflow_dispatch:
 
 jobs:
-  call-stale-workflow:
-    uses: pimcore/workflows-collection-public/.github/workflows/stale.yml@v1.1.0
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: 'This issue is stale because it has been open for 30 days with no activity.'
+          close-issue-message: 'Closing this issue due to inactivity.'
